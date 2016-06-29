@@ -2,7 +2,7 @@
 
    // Include_once permette di importare piu volte la stessa risorsa
    // senza dare errori
-include_once './classes/Utente.php';
+   include_once './classes/Utente.php';
    include_once './classes/UtenteConEmail.php';
    
    $utente1 = new Utente('Pape');

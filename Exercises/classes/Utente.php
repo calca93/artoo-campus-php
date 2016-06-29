@@ -1,6 +1,8 @@
 <?php
 
-class Utente {
+include_once 'Object.php';
+
+class Utente extends Object{
    
    const VERSION = '1.0 const';
    
@@ -40,6 +42,14 @@ class Utente {
    
    public static function getN(){
       return self::$n;
+   }
+   
+   public function test2(array $param){
+      ;
+   }
+   
+   public function getString(){
+      
    }
 }
 
