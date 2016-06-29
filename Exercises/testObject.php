@@ -5,10 +5,7 @@
    
    function prova (Object $obj){
       $obj->getString();
-      // if($obj instanceof Object)
-      //    return 'OK';
-      
-      // return 'Errore';
+      $obj->getInteger(array());
    }
    
    $utente = new Utente('pippo');

@@ -1,8 +1,9 @@
 <?php
 
 include_once 'Object.php';
+include_once './interfaces/Component.php';
 
-class Utente extends Object{
+class Utente extends Object implements Component{
    
    const VERSION = '1.0 const';
    
@@ -50,6 +51,10 @@ class Utente extends Object{
    
    public function getString(){
       
+   }
+   
+   public function getInteger(array $array){
+      return 1;
    }
 }
 
