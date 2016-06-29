@@ -2,6 +2,8 @@
 
 class Utente {
    
+   const VERSION = '1.0 const';
+   
    //non accessibile direttamente dalle istanze
    private $username = 'default value'; 
    
@@ -9,10 +11,17 @@ class Utente {
    public $abilitato = true;
    
    //Visibile non dalle istanze ma solo dalle sottoclassi
-   protected $test = 'ciao'; 
+   protected $test = 'ciao';
+   
+   // static quindi non modificabile e uguale per tutte le instanze
+   private static $version = '1.0';
+   
+   // variabile che tiene conto del numero di instanze create dalla classe
+   private static $n = 0;
    
    public function __construct($username){
       $this->username = $username;
+      self::$n ++;
    }
    
    public function getUsername(){
@@ -22,6 +31,15 @@ class Utente {
    public function setUsername($name){
       if(is_string($name))
          $this->username = $name;
+   }
+   
+   public static function getVersion(){
+      // return $this.version; // sbagliato
+      return Utente::$version;
+   }
+   
+   public static function getN(){
+      return self::$n;
    }
 }
 
