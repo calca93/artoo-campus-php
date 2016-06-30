@@ -16,7 +16,7 @@
       // efficace questo metodo !!!
       public static function getInstance($param){
          if(!is_int($param))
-            throw new Exception("Parametro non intero");
+            return;
             
          // IF che permette la creazione di un solo oggetto di questa classe
          // if(self::$i == 0){
