@@ -7,6 +7,7 @@
 <!-- # run the MySQL interactive shell-->
 <!-- $ mysql-ctl cli-->
 <?php
+
    $servername = getenv('IP');
    $username = getenv('C9_USER');
    $password = "";
@@ -22,28 +23,21 @@
    echo "Connected successfully (".$db->host_info.")";
     
    
-   if ($db->query("
-      CREATE TABLE Persons
-      (
-         PersonID int,
-         Name varchar(255),
-      )")
-   ) {
-      echo ("Table Persons successfully created.\n");
-   }
-   $result;
-   if($result = $db->query("INSERT INTO Personas VALUES (01, 'Marco'")){
-      echo ("Record added");
-   }
+   //CREAZIONE TABELLA
+   $sql = "CREATE TABLE MyGuests (
+      id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
+      firstname VARCHAR(30) NOT NULL,
+      lastname VARCHAR(30) NOT NULL,
+      email VARCHAR(50),
+      reg_date TIMESTAMP
+      )";
    
-   if ($result = $db->query("SELECT Name FROM Persons LIMIT 10")) {
-      echo ("Select returned %d rows.\n". $result->num_rows);
-
-      /* free result set */
-      $result->close();
+   if ($db->query($sql) === TRUE) {
+       echo "Table MyGuests created successfully";
+   } else {
+       echo "Error creating table: " . $conn->error;
    }
-   
-   echo ("Select returned %d rows.\n". $result->num_rows);
     
-    $db->close();
+   $db->close();
+   
 ?>
