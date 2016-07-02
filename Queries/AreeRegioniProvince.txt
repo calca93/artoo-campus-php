@@ -1,0 +1,11 @@
+Nome regione e nome provincia delle province con piu di 100000 abitanti
+SELECT Regione, Provincia FROM province JOIN regioni USING (RegioneID) WHERE province.Residenti > 1000000;  
+
+Nomi delle province che appartengono a una regione il cui nome inizia per lettera L
+SELECT SUBSTRING(Regione,1,1) AS ini, Provincia FROM province JOIN regioni USING (RegioneID) GROUP BY ini, Provincia HAVING ini LIKE 'l';
+
+Numero di provincie con numero di residenti superiore alla media nazionale per provincia
+SELECT COUNT(*) FROM province WHERE Residenti > (SELECT AVG(Residenti) FROM province);
+
+Numero di regioni che hanno almeno una provincia con superficie > 6500
+SELECT COUNT(*) FROM regioni WHERE RegioneID IN (SELECT RegioneID FROM province WHERE Superrficie > 6500);
