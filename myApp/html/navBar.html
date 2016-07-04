@@ -6,11 +6,12 @@
          $active = 'index';
       if($_SERVER['SCRIPT_NAME'] == '/myApp/utenti.php')
          $active = 'utenti';
+      if($_SERVER['SCRIPT_NAME'] == '/myApp/utente.php')
+         $active = 'utenti';
       if($_SERVER['SCRIPT_NAME'] == '/myApp/post.php')
          $active = 'post';
    ?>
-   
-   <link href="style.css" rel="stylesheet" type="text/css">
+
    
    <a class="<?php if($active == 'index') echo 'active' ?>" href="index.php">HOME</a>
    -

@@ -3,12 +3,12 @@
    class Ruolo {
       public $RuoloID;
       public $Descrizione;
-      private static $nome_tabella = "ruoli";
+      private static $nome_tabella = "Ruoli";
       
       
       public static function getRoles(Database $database){
          $records =  $database -> getAllRecords(self::$nome_tabella);
-         var_dump($records);
+         //var_dump($records);
          
          $data = array();
          
@@ -16,6 +16,7 @@
             $r = new Ruolo();
             $r -> RuoloID = $obj -> RuoloID;
             $r -> Descrizione = $obj -> Descrizione;
+            
             
             $data[] = $r;
          }
