@@ -1,0 +1,104 @@
+-- phpMyAdmin SQL Dump
+-- version 4.0.10deb1
+-- http://www.phpmyadmin.net
+--
+-- Host: 127.0.0.1
+-- Generato il: Lug 04, 2016 alle 09:51
+-- Versione del server: 5.5.49-0ubuntu0.14.04.1
+-- Versione PHP: 5.5.9-1ubuntu4.17
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+--
+-- Database: `myApp`
+--
+
+-- Salvataggio di un checkpoint
+-- START TRANSACTION
+
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `Posts`
+--
+
+CREATE TABLE IF NOT EXISTS `Posts` (
+  `PostID` int(11) NOT NULL AUTO_INCREMENT,
+  `Creato` datetime NOT NULL,
+  `Modificato` datetime NOT NULL,
+  `UtenteID` int(11) NOT NULL,
+  `Titolo` varchar(255) NOT NULL,
+  `Contenuto` text NOT NULL,
+  PRIMARY KEY (`PostID`),
+  KEY `UtenteID` (`UtenteID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `Ruoli`
+--
+
+CREATE TABLE IF NOT EXISTS `Ruoli` (
+  `RuoloID` int(11) NOT NULL AUTO_INCREMENT,
+  `Descrizione` varchar(50) NOT NULL,
+  PRIMARY KEY (`RuoloID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `Utenti`
+--
+
+CREATE TABLE IF NOT EXISTS `Utenti` (
+  `UtenteID` int(11) NOT NULL AUTO_INCREMENT,
+  `Creato` datetime DEFAULT NULL,
+  `Modificato` datetime DEFAULT NULL,
+  `RuoloID` int(11) NOT NULL,
+  `NomeUtente` varchar(255) NOT NULL,
+  `Nome` varchar(100) NOT NULL,
+  `Cognome` varchar(100) NOT NULL,
+  `Email` varchar(255) NOT NULL,
+  `Abilitato` tinyint(1) NOT NULL,
+  PRIMARY KEY (`UtenteID`),
+  UNIQUE KEY `NomeUtente` (`NomeUtente`),
+  KEY `Nome` (`Nome`,`Cognome`),
+  KEY `RuoloID` (`RuoloID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- Limiti per le tabelle scaricate
+--
+
+--
+-- Limiti per la tabella `Posts`
+--
+ALTER TABLE `Posts`
+  ADD CONSTRAINT `Posts_ibfk_1` FOREIGN KEY (`UtenteID`) REFERENCES `Utenti` (`UtenteID`);
+
+--
+-- Limiti per la tabella `Utenti` 
+--
+ALTER TABLE `Utenti`
+  ADD CONSTRAINT `Utenti_ibfk_1` FOREIGN KEY (`RuoloID`) REFERENCES `Ruoli` (`RuoloID`);
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+--
+-- Fine dell'esecuzione dei comandi, decisione di cosa fare
+--
+
+-- COMMIT; per confermare le modifiche fatte dopo START TRANSACTION
+-- ROLLBACK; per annullare le modifiche

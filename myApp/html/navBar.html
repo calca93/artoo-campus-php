@@ -1,0 +1,20 @@
+<div>
+   
+   <?php
+      $active;
+      if($_SERVER['SCRIPT_NAME'] == '/myApp/index.php')
+         $active = 'index';
+      if($_SERVER['SCRIPT_NAME'] == '/myApp/utenti.php')
+         $active = 'utenti';
+      if($_SERVER['SCRIPT_NAME'] == '/myApp/post.php')
+         $active = 'post';
+   ?>
+   
+   <link href="style.css" rel="stylesheet" type="text/css">
+   
+   <a class="<?php if($active == 'index') echo 'active' ?>" href="index.php">HOME</a>
+   -
+   <a class="<?php if($active == 'utenti') echo 'active' ?>" href="utenti.php">UTENTI</a>
+   -
+   <a class="<?php if($active == 'post') echo 'active' ?>" href="post.php">POST</a>
+</div>

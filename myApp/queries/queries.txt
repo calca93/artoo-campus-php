@@ -1,0 +1,23 @@
+CREATE TABLE Ruoli {
+   RuoloID,
+   Descrizione,
+}
+CREATE TABLE Utenti {
+   UtenteID,
+   Creato,
+   Modificato,
+   RuoloID,
+   NomeUtente,
+   Nome,
+   Cognome,
+   Email,
+   Abilitato,
+}
+CREATE TABLE Posts {
+   PostID,
+   Creato,
+   Modificato,
+   UtenteID,
+   Titolo,
+   Contenuto,
+}

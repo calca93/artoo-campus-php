@@ -9,7 +9,6 @@
       
       public static function getRoles(Database $database){
          $records =  $database -> getAllRecords(self::$nome_tabella);
-         
          var_dump($records);
          
          $data = array();
