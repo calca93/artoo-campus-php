@@ -61,7 +61,7 @@
                             <?php foreach ($utenti as $value) : ?>
                                 <tr class="<?php if ($value->Abilitato == 0) echo 'disabilitato'; ?>">
                                     <td>
-                                        <a href="/ArtooP16-Utenti/utente.php?utenteid=<?= $value->UtenteID; ?>">
+                                        <a href="/myApp/utente.php?utenteid=<?= $value->UtenteID; ?>">
                                             <?= $value->NomeUtente; ?>
                                         </a>
                                     </td>
