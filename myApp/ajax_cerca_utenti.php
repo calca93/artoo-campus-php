@@ -19,16 +19,18 @@
    
    $utenti = Utente::CercaUtenti($db, $_GET);
    
-   $a = array(
-      'error' => 0,
-      'data' => null,
-   );
+   require 'html_cerca_utenti.php';
    
-   if(is_string($utenti)){
-      $a['error'] = $utenti;
-   }
-   else {
-      $a['data'] = $utenti;
-   }   
-   echo json_encode($a);
+   // $a = array(
+   //    'error' => 0,
+   //    'data' => null,
+   // );
+   
+   // if(is_string($utenti)){
+   //    $a['error'] = $utenti;
+   // }
+   // else {
+   //    $a['data'] = $utenti;
+   // }   
+   // echo json_encode($a);
 ?>

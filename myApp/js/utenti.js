@@ -6,19 +6,38 @@ $('.delete_utente').on('click', function (event) {
 
 $('#cerca_utenti button').click(function(event){
    var text = $('#cerca_utenti_input').val();
+   var risultati = $('#cerca_utenti_risultati');
    if(text.length > 0){
+      risultati.empty();
       $.ajax({
          url: 'ajax_cerca_utenti.php',
          method:'get',
-         dataType: 'json',
+         dataType: 'html',
          data:{
             text_ricerca: text,
          },
-         success: function(json){
-            console.log(json);
+         success: function(html){
+            risultati.html(html);
+            // console.log(json);
+            // if(json.error == 0){
+            //    if(json.data.length > 0){
+            //       var ul = $('<ul>');
+                  
+            //       $.each(json.data, function(index, element){
+            //          console.log(element);
+            //          $('<li> <a href="/myApp/utente.php?utenteid='+ element.UtenteID +'">'+ element.NomeUtente +'</a> </li>').appendTo(ul);
+            //       });
+                  
+            //       ul.appendTo(risultati);
+            //    }else{
+            //       risultati.html('<em>La ricerca non ha prodotto risultati</em>');
+            //    }
+            // }
+            // else
+            //    risultati.html(json.error);
          },
          error: function(error){
-            console.error(error.responseText);
+            risultati.html(error.responseText);
          },
       });
    }
