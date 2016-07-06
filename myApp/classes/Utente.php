@@ -53,6 +53,35 @@
          }
       }
       
+      public static function CercaUtenti(Database $db, $_get){
+         try{
+            $text = $_get['text_ricerca'];
+            $text = str_replace("'", "''", $text);
+            
+            $query = "
+               SELECT * 
+               FROM ". self::$nome_tabella ." 
+               WHERE NomeUtente LIKE '%". $text ."%' 
+               ORDER BY NomeUtente";
+               
+            $utenti = $db -> executeQuery($query);
+            $data = array();
+            
+            foreach ($utenti as $u) :
+               $obj = new Utente;
+               foreach ($u as $k => $v) :
+                  $obj -> $k = $v;
+               endforeach;
+               $data[] = $obj;
+            endforeach;
+            
+            return $data;
+            
+         }catch(Exception $e){
+            return $e->getMessage() . ' (' . $e->getCode() . ')';
+         }
+      }
+      
       public static function GetAll(Database $db) {
          try {
             $query = "SELECT * FROM Utenti";

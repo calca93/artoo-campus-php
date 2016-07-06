@@ -94,7 +94,8 @@
     </body>
 
     <?php
-    $file = 'js/utenti.js';
+        $file = 'js/utenti.js';
+        require_once './html/footer.php';
     ?>
 
 </html>
