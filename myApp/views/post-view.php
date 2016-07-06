@@ -13,6 +13,7 @@
          <form action="" method="post">
             <label>Utente</label>
             <select name="utenteid">
+               <option value="0">--- Seleziona un utente ---</option>
                <?php foreach($utenti as $u) : ?>
                   <option value="<?= $u -> UtenteID ?>">
                      <?= $u -> NomeUtente ?>
@@ -35,6 +36,29 @@
       <?php endif; ?>
       
       <?php if($message !== null) echo "<div>$message</div>"; ?>
+      
+      
+      
+      <!-- lista post -->
+      <?php if(is_array($posts)) :?>
+      
+         <ul style="list-style-type: none">
+            <?php foreach($posts as $p) : ?>
+            <li style="border-style: solid; border-width: 1px; margin-bottom: 5px;">
+               <div>
+                  <div>
+                     <p><?= $p -> Utente -> NomeUtente ?> - <?= $p -> Creato ?></p>
+                  </div>
+                  <div style="font-size: 20px; font-style: italic"><?= $p -> Titolo ?></div>
+                  <div><?= $p -> Contenuto ?></div>
+               </div>
+            </li>
+            <?php endforeach; ?>
+         </ul>
+         
+      <?php else :?>
+      
+      <?php endif; ?>
       
    </body>
    

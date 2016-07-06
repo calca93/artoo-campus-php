@@ -11,8 +11,10 @@
    $db = new Database($servername, $username, $pass);
    $db->useDatabase('myApp');
    
-   if(count($_POST) > 0)
+   if(count($_POST) > 0){
       $ok = Utente::EliminaUtente($db, $_POST['utenteid']);
+      var_dump($ok);
+   }
       
    $utenti = Utente::getAll($db);
    $title = 'Utenti';

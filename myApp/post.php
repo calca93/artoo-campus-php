@@ -16,7 +16,7 @@
    
    $utenti = Utente::GetAll($db);
    $posts = Post::GetAll($db);
-   var_dump($posts);
+   // var_dump($posts);
    
    if(count($_POST) > 0){
       $ok = Post::CreaNuovoPost($db, $_POST);
