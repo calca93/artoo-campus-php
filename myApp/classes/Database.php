@@ -41,7 +41,7 @@
          //There is error?
          if($this -> errno > 0){
          //IF yes
-            throw new Exception ($this -> connect_error, $this -> connect_errno);
+            throw new Exception ($this -> error, $this -> errno);
          }
          else{
             if($result instanceof mysqli_result){

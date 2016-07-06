@@ -4,12 +4,12 @@
       public $UtenteID;
       public $Creato;
       public $Modificato;
-      public $RuoloID;
       public $NomeUtente;
       public $Nome;
       public $Cognome;
       public $Email;
       public $Abilitato;
+      public $RuoloID;
       private static $nome_tabella = 'Utenti';
       
       public static function CreaOAggiornaUtente(Database $db, array $parametri) {
@@ -33,9 +33,14 @@
                return (int) $parametri['utenteid'];
             else :
                $query = "INSERT INTO " . self::$nome_tabella . " (Creato,RuoloID,NomeUtente,Nome,Cognome,Email,Abilitato) " .
-                  "VALUES (NOW(),{$parametri['ruolo']},'{$parametri['nomeutente']}','{$parametri['nome']}'," .
-                  " '{$parametri['cognome']}','{$parametri['email']}'," .
-                  (isset($parametri['abilitato']) ? 1 : 0) .
+                  "VALUES (
+                     NOW(),
+                     {$parametri['ruolo']},
+                     '{$parametri['nomeutente']}',
+                     '{$parametri['nome']}',
+                     '{$parametri['cognome']}',
+                     '{$parametri['email']}',
+                     " .(isset($parametri['abilitato']) ? 1 : 0) .
                   ")";
                $db->executeQuery($query);
                $_SESSION['messaggio_utente'] = 'OK!!! Utente creato!';
@@ -84,7 +89,7 @@
       
       public static function GetAll(Database $db) {
          try {
-            $query = "SELECT * FROM Utenti";
+            $query = "SELECT * FROM ". self::$nome_tabella;
             $utenti = $db->executeQuery($query);
             $data = array();
             foreach ($utenti as $u) :
