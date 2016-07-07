@@ -5,3 +5,4 @@
    $app = Application::GetIstanza();
    
    var_dump($app);
+   

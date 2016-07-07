@@ -7,7 +7,6 @@
       
       private static $instance;
       
-      
       public static function GetIstanza(){
          if(self::$instance == null)
             self::$instance = new self;
