@@ -7,6 +7,6 @@
          $utenti = array('pippo', 'pluto', 'severino');
          
          #render
-         self::render('home', array('utenti' => $utenti, 'titolo' => 'Home Page!'));
+         self::render('home', array('utenti' => $utenti, 'titolo' => 'Home Page'));
       }
    }
