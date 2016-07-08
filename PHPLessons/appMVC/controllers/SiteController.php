@@ -2,7 +2,11 @@
 
    class SiteController extends Controller{
       
+      public $layout = 'main';
+      
       public function actionHome(){
+         
+         // $this -> layout = 'main2';
          
          $utenti = array('pippo', 'pluto', 'severino');
          

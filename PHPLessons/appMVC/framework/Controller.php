@@ -1,7 +1,7 @@
 <?php
 
    class Controller {
-      
+      public $layout ='';
       public $_controller;
       
       public function render($view, array $parametri = null){
@@ -27,7 +27,14 @@
                // $title = $parametri['titolo'];
                // $utenti = $parametri['utenti'];
                
-               require $file;
+               if(strlen($this -> layout) > 0){
+                  $layout = str_replace('index.php', '', $_SERVER['SCRIPT_FILENAME']) . 'views/layout/'. $this->layout .'.php';
+                  
+                  if(file_exists($layout)){
+                     $contenutoPagina = $file;
+                     require $layout;
+                  }else die("Il layout $layout non è stato trovato");
+               }else require $file;
                
             }else die('Nessun parametro passato alla view');
             
