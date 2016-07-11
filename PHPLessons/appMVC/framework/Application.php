@@ -6,14 +6,33 @@
       #non deve essere estensibile
       
       private static $instance;
+      private $_config;
+      public $db;
       
       private function __construct(){
          
       }
       
-      public static function GetIstanza(){
+      public static function GetIstanza(array $config = null){
          if(self::$instance == null)
             self::$instance = new self;
+            
+         if(self::$instance -> _config == null)
+            self::$instance -> _config = $config;
+         
+         if(isset($config['db'])){
+            
+            // Create connection
+            self::$instance -> db = new mysqli(
+               $config['db']['host'], 
+               $config['db']['user'], 
+               $config['db']['password'], 
+               $config['db']['database']
+               );
+         }
+         
+         if((self::$instance -> db -> connect_errno ) > 0 )
+            throw new Exception (self::$_instance -> db -> connect_error, self::$instance -> db -> connect_errno);
          
          return self::$instance;
       }

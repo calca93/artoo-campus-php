@@ -4,8 +4,13 @@
    
    require 'framework/Application.php';
    require 'framework/Controller.php';
+   require 'framework/TabellaDatabase.php';
+   require 'models/Utente.php';
    
-   $app = Application::GetIstanza();
+   require 'config/main.php';
+   
+   
+   $app = Application::GetIstanza($configurazione);
    
    $app -> run();
    
